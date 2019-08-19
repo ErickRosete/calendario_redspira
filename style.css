@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar-container {
+    margin-top: 1rem;
+    max-width: 90%;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#calendar-dates td {
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+}
+
+#calendar-dates td:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
