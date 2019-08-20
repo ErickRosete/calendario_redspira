@@ -21,9 +21,12 @@ body {
     width: 5rem;
     height: 5rem;
     text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-#calendar-dates td:hover {
+#calendar-dates td.colored:hover {
     cursor: pointer;
     opacity: 0.9;
+    border: 2px solid black;
 }
