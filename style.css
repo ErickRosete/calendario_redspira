@@ -6,8 +6,12 @@ body {
 }
 
 #calendar-container {
-    margin-top: 1rem;
+    margin: 2rem 0px;
+    width: 50rem;
     max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 #calendar-header {
@@ -18,8 +22,8 @@ body {
 }
 
 #calendar-dates td {
-    width: 5rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
     text-align: center;
     font-size: 1rem;
     font-weight: bold;
@@ -29,4 +33,74 @@ body {
     cursor: pointer;
     opacity: 0.9;
     border: 2px solid black;
+}
+
+.hour-td {
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#month-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#month-list div {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin: 5px;
+    transition: all 300ms;
+}
+
+#month-list div:hover:not(.active-month) {
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 3.5rem;
+    height:3.5rem;
+}
+
+#month-list .active-month {
+    width: 5rem;
+    height: 5rem;
+    font-size: 1.5rem
+}
+
+@media only screen and (min-width: 600px) {
+    #calendar-container {
+        flex-direction: row;
+    }
+    #month-list {
+        flex-direction: column;
+    }
+    .hour-td {
+        width: 5rem;
+        height: 5rem;
+    }
+    #calendar-dates td {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+#calendar-dates table {
+    animation: fade-in 300ms;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        /* transform: translateY(20px); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: translateY(0); */
+    }
 }

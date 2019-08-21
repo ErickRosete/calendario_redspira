@@ -2,51 +2,60 @@
 const showDayModal = (date) => {
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     $('#dayModal #title').text(date.toLocaleDateString('es', options))
-    getDateCalendar(date)
+    setDateCalendar(date)
     $('#dayModal').modal('show');
 }
 
-const getDateCalendar = (date) => {
+const setDateCalendar = async (date) => {
     const start = new Date(date.getTime())
     start.setHours(0, 0, 0, 0)
     const end = new Date(date.getTime())
     end.setHours(23, 0, 0, 0)
-    const data = getAreaData(start, end, "hours")
+    const data = await getAreaData(start, end, "hour")
+    const table = document.createElement('table');
+    j = 0;
+    for (i = 0; i < 24; i++) {
+        if (data && j < data.length) {
+            const hour = new Date(data[j].interval).getHours()
+            if (hour == i) {
+                table.appendChild(createHourtr(data[j]))
+                j++;
+            } else {
+                table.appendChild(createEmptyHourtr(i))
+            }
+        } else {
+            table.appendChild(createEmptyHourtr(i))
+        }
 
-    // const table = document.createElement('table');
-    // var tr = document.createElement('tr');
+    }
 
-    // //Day Name - Row
-    // const day_names = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
-    // for (var i = 0; i < 7; i++) {
-    //     var td = document.createElement('td');
-    //     td.innerHTML = day_names[i]
-    //     tr.appendChild(td)
-    // }
-    // table.appendChild(tr)
-    // const first_date = new Date(year, month, 1);
-    // first_date.setHours(0, 0, 0, 0)
-    // const last_date = new Date(year, month + 1, 0)
-    // last_date.setHours(23, 0, 0, 0)
-    // const data = getAreaData(first_date, last_date, "day")
-    // const first_day = first_date.getDay();
-
-    // //First Days - Row
-    // tr = document.createElement('tr');
-    // var count = 1;
-    // for (var i = 0; i < 7; i++) {
-    //     if (i < first_day) {
-    //         // td = createtd(last_month_days - (first_day - i - 1))
-    //         td = createEmptytd()
-    //     } else {
-    //         if (count <= data.length) {
-    //             td = createtd(data[count - 1])
-    //         } else {
-    //             td = createEmptytd(count)
-    //         }
-    //         count++;
-    //     }
-    //     tr.appendChild(td)
-    // }
-    // table.appendChild(tr)
+    const cal = document.getElementById('calendar-single-date')
+    if (cal.hasChildNodes()) {
+        cal.removeChild(cal.childNodes[0])
+    }
+    cal.appendChild(table)
 }
+
+const createHourtr = (data) => {
+    const tr = document.createElement('tr');
+    const hour = padWithZeroes(new Date(data.interval).getHours(), 2);
+    const td1 = document.createElement('td');
+    td1.innerHTML = hour + ":00";
+    td1.classList.add("hour-td")
+    colorElement(td1, data.val_aqi);
+    tr.appendChild(td1)
+    const td2 = document.createElement('td')
+    tr.appendChild(td2)
+    return tr
+}
+const createEmptyHourtr = (hour) => {
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    td1.innerHTML = padWithZeroes(hour, 2) + ":00";
+    td1.classList.add("hour-td")
+    td1.style.backgroundColor = "white"
+    tr.appendChild(td1)
+    tr.appendChild(document.createElement('td'))
+    return tr
+}
+
