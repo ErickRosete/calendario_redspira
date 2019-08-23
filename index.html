@@ -15,7 +15,9 @@
 </head>
 
 <body>
-    <h1>calendario</h1>
+    <h1>Calendario</h1>
+    <p>En este calendario puedes visualizar de manera rápida el valor de AQI, este indice notifica la calidad del aire
+        con respecto a cierto contaminante</p>
     <div id="calendar-container">
         <div id="month-list"></div>
         <div id="month-calendar">
@@ -27,23 +29,33 @@
             <div id="calendar-dates"></div>
         </div>
     </div>
+    <p>El indice de la calidad del aire (AQI) es clasificado de acuerdo a los siguientes rangos: </p>
+    <ul id="aqi-list">
+        <li>
+            <div class="tile" id="green"></div>Bueno (0-50)
+        </li>
+        <li>
+            <div class="tile" id="yellow"></div>Moderado (51-100)
+        </li>
+        <li>
+            <div class="tile" id="orange"></div>Insalubre para grupos sensibles (101-150)
+        </li>
+        <li>
+            <div class="tile" id="red"></div>Insalubre (151-200)
+        </li>
+        <li>
+            <div class="tile" id="purple"></div>Muy insalubre (201-300)
+        </li>
+        <li>
+            <div class="tile" id="brown"></div>Peligroso (301-500)
+        </li>
+    </ul>
+    <hr>
 
-    <h1>gráficas</h1>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
-    <p>sdfasdfasd</p>
+    <h1>Gráficas</h1>
+    <p>Puedes comparar el comportamiento del AQI en diferentes años</p>
+    <div id="graph" style="width:700px;height:500px;"></div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="dayModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -84,6 +96,9 @@
     <script type="text/javascript" src="scripts/date-calendar.js"></script>
     <script type="text/javascript" src="scripts/month-calendar.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="scripts/graphs.js"></script>
 
 </body>
 

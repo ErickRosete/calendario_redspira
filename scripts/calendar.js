@@ -92,8 +92,14 @@ const getMonthData = (year, month) => {
 
 const createEmptyDatetd = (day = "") => {
     var td = document.createElement('td');
-    td.innerHTML = day;
     td.style.backgroundColor = "white";
+    if (day != "") {
+        td.innerHTML = "ND"
+    }
+    const dayDiv = document.createElement('div')
+    dayDiv.innerHTML = day;
+    dayDiv.classList.add("calendar-day-number")
+    td.appendChild(dayDiv)
     return td;
 }
 
@@ -101,8 +107,14 @@ const createDatetd = (data) => {
     var td = document.createElement('td');
     td.classList.add("colored");
     const date = new Date(data.interval)
-    td.innerHTML = date.getDate();
     td = colorElement(td, data.val_aqi)
     td.addEventListener("click", () => showDayModal(date));
+    td.innerHTML = Math.round(data.val_aqi)
+
+    const dayDiv = document.createElement('div')
+    dayDiv.innerHTML = date.getDate();
+    dayDiv.classList.add("calendar-day-number")
+    td.appendChild(dayDiv)
+
     return td;
 }
