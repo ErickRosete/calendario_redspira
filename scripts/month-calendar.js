@@ -9,7 +9,11 @@ const setMonthCalendar = async () => {
         colorElement(month_tile, monthData.val_aqi)
         month_tile.id = `${date.getMonth()}-${date.getFullYear()}`
         month_tile.addEventListener('click',
-            () => setCalendar(date.getFullYear(), date.getMonth()))
+            () => {
+                setCalendar(date.getFullYear(), date.getMonth())
+                setHourCalendar(date.getFullYear(), date.getMonth())
+            }
+        )
         month_list.appendChild(month_tile)
     });
 }

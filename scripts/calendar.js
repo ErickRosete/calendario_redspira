@@ -31,7 +31,7 @@ const setCalendarTitle = (year, month) => {
 const setCalendarTable = async (year, month) => {
     const table = document.createElement('table');
     table.appendChild(getRowDayNames())
-    const data = await getMonthData(year, month)
+    const data = await getMonthData(year, month, "day")
 
     var count = 1;
     var j = 0;
@@ -80,14 +80,6 @@ const getRowDayNames = () => {
         tr.appendChild(td)
     }
     return tr
-}
-
-const getMonthData = (year, month) => {
-    const first_date = new Date(year, month, 1);
-    first_date.setHours(0, 0, 0, 0)
-    const last_date = new Date(year, month + 1, 0)
-    last_date.setHours(23, 0, 0, 0)
-    return getAreaData(first_date, last_date, "day")
 }
 
 const createEmptyDatetd = (day = "") => {

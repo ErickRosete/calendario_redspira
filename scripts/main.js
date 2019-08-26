@@ -12,6 +12,7 @@ const changeMonth = (value) => {
         settedMonth -= 12
     }
     setCalendar(settedYear, settedMonth);
+    setHourCalendar(settedYear, settedMonth);
 }
 
 window.onload = () => {
@@ -20,4 +21,5 @@ window.onload = () => {
     const current_year = d.getFullYear();
     setMonthCalendar().then(() => setActiveMonth(current_year, current_month));
     setCalendar(current_year, current_month);
+    setHourCalendar(current_year, current_month)
 }
