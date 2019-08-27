@@ -2,6 +2,67 @@
 const setHourCalendar = async (year, month) => {
     const table = document.createElement('table');
     const data = await getMonthData(year, month, "hour")
+    const days = new Date(year, month + 1, 0).getDate();
+    var d = 0
+
+    //auxMatrix
+    var dataMatrix = Array(24).fill().map(() => Array(days).fill())
+    for (var i = 1; i <= days; i++) {
+        for (var j = 0; j < 24; j++) {
+            if (data && d < data.length) {
+                const date = new Date(data[d].interval);
+                if (date.getDate() == i && date.getHours() == j) {
+                    dataMatrix[j][i - 1] = data[d];
+                    d++;
+                }
+            }
+        }
+    }
+
+    //fill table
+    for (var i = 0; i < 25; i++) {
+        const tr = document.createElement('tr');
+        if (i == 0) {
+            const ylabel = createtd()
+            ylabel.classList.add("hour-calendar-label")
+            ylabel.rowSpan = 25
+            const div = creatediv("Horas")
+            div.classList.add("rotate")
+            ylabel.appendChild(div)
+            tr.appendChild(ylabel)
+        }
+        tr.appendChild(createtd(i < 24 ? i : ""))
+        for (var j = 0; j < days; j++) {
+            var td;
+            if (i == 24) {
+                td = createtd(j + 1)
+            } else if (dataMatrix[i][j] != undefined) {
+                td = createHourCalendartd(dataMatrix[i][j])
+            } else {
+                td = createtd();
+            }
+            tr.appendChild(td)
+        }
+        table.appendChild(tr)
+    }
+    const xlabel = document.createElement('tr')
+    xlabel.classList.add("hour-calendar-label")
+    xlabel.appendChild(document.createElement('td'))
+    const hourtd = createtd('Días')
+    hourtd.colSpan = days + 1
+    xlabel.appendChild(hourtd)
+    table.appendChild(xlabel)
+
+    const hourCalendar = document.getElementById("hour-calendar");
+    if (hourCalendar.hasChildNodes()) {
+        hourCalendar.removeChild(hourCalendar.childNodes[0])
+    }
+    hourCalendar.appendChild(table);
+}
+
+const setHourCalendarAlt = async (year, month) => {
+    const table = document.createElement('table');
+    const data = await getMonthData(year, month, "hour")
     var d = 0
     const days = new Date(year, month + 1, 0).getDate();
     for (var i = 1; i <= days; i++) {
@@ -24,10 +85,10 @@ const setHourCalendar = async (year, month) => {
                     td = createHourCalendartd(data[d])
                     d++;
                 } else {
-                    td = createEmptyHourCalendartd();
+                    td = createtd();
                 }
             } else {
-                td = createEmptyHourCalendartd()
+                td = createtd()
             }
             tr.appendChild(td)
         }
@@ -54,12 +115,6 @@ const setHourCalendar = async (year, month) => {
         hourCalendar.removeChild(hourCalendar.childNodes[0])
     }
     hourCalendar.appendChild(table);
-}
-
-const createEmptyHourCalendartd = () => {
-    var td = document.createElement('td');
-    td.style.backgroundColor = "white";
-    return td;
 }
 
 const createHourCalendartd = (data) => {

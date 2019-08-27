@@ -184,6 +184,10 @@ p {
     margin-bottom: 2rem;
 }
 
+/* #hour-calendar table {
+    transform: rotate(90deg);
+} */
+
 #hour-calendar td {
     width: 1.5rem;
     height: 1.5rem;
