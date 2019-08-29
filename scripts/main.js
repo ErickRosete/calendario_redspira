@@ -13,16 +13,17 @@ const changeMonth = (value) => {
     localStorage.setItem('year', settedYear)
     setCalendar();
     setHourCalendar();
+    setActiveMonth();
 }
 
 window.onload = () => {
-    setSectedDate(new Date())
+    setSelectedDate(new Date())
     setFilters();
     refreshCalendars();
     getUserLocation();
 }
 
-const setSectedDate = (date) => {
+const setSelectedDate = (date) => {
     const current_month = date.getMonth();
     const current_year = date.getFullYear();
     localStorage.setItem('month', current_month)
