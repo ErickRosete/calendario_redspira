@@ -1,7 +1,8 @@
-const setCalendar = (year, month) => {
+const setCalendar = () => {
+    var year = getSelectedYear();
+    var month = getSelectedMonth();
     setCalendarTitle(year, month);
     setCalendarTable(year, month);
-    setActiveMonth(year, month)
     disableButtons(year, month)
 }
 

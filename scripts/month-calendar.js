@@ -1,5 +1,9 @@
 const setMonthCalendar = async () => {
     const month_list = document.getElementById('month-list')
+    while (month_list.hasChildNodes()) {
+        month_list.removeChild(month_list.childNodes[0]);
+    }
+
     const month_names = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
     const data = await getEveryMonthData();
     data.forEach(monthData => {
@@ -10,12 +14,16 @@ const setMonthCalendar = async () => {
         month_tile.id = `${date.getMonth()}-${date.getFullYear()}`
         month_tile.addEventListener('click',
             () => {
-                setCalendar(date.getFullYear(), date.getMonth())
-                setHourCalendar(date.getFullYear(), date.getMonth())
+                localStorage.setItem('month', date.getMonth())
+                localStorage.setItem('year', date.getFullYear())
+                setCalendar();
+                setHourCalendar();
+                setActiveMonth();
             }
         )
         month_list.appendChild(month_tile)
     });
+    setActiveMonth();
 }
 
 const getEveryMonthData = () => {
@@ -26,7 +34,9 @@ const getEveryMonthData = () => {
     return getAreaData(first_date, last_date, "month")
 }
 
-const setActiveMonth = (year, month) => {
+const setActiveMonth = () => {
+    var year = getSelectedYear();
+    var month = getSelectedMonth();
     $(".active-month").removeClass("active-month")
     $(`#${month}-${year}`).addClass("active-month")
 }

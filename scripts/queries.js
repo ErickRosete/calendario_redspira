@@ -34,6 +34,7 @@ const ajaxQuery = (url, req = {}) => {
         crossDomain: true,
         method: 'GET',
         success: function (data) {
+            console.log(data)
             return data;
         }
     });

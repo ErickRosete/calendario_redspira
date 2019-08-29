@@ -1,5 +1,8 @@
 
-const setHourCalendar = async (year, month) => {
+const setHourCalendar = async () => {
+    var year = getSelectedYear();
+    var month = getSelectedMonth();
+
     const table = document.createElement('table');
     const data = await getMonthData(year, month, "hour")
     const days = new Date(year, month + 1, 0).getDate();
@@ -60,7 +63,10 @@ const setHourCalendar = async (year, month) => {
     hourCalendar.appendChild(table);
 }
 
-const setHourCalendarAlt = async (year, month) => {
+const setHourCalendarAlt = async () => {
+    var year = getSelectedYear();
+    var month = getSelectedMonth();
+
     const table = document.createElement('table');
     const data = await getMonthData(year, month, "hour")
     var d = 0

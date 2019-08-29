@@ -129,6 +129,10 @@ p {
     animation: fade-in 300ms;
 }
 
+#month-list div {
+    animation: fade-in 300ms;
+}
+
 #aqi-list li {
     list-style-type: none;
     display: flex;
@@ -207,4 +211,17 @@ p {
 #hour-calendar .hour-calendar-label td, #hour-calendar .hour-calendar-label {
     font-size: 1rem;
     font-weight: bold;
+}
+
+#filters {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#filters .filter-div {
+    width: 20%;
+    margin: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
 }

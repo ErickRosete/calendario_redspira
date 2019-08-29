@@ -18,12 +18,28 @@
     <h1>Calendario</h1>
     <p>En este calendario puedes visualizar de manera rápida el valor de AQI, este indice notifica la calidad del aire
         con respecto a cierto contaminante</p>
+    <div id="filters">
+        <div class="filter-div" id="city-div">
+            <label for="city-list">Ciudades</label>
+            <select class="filter-select" id="city-list" name="city"></select>
+        </div>
 
-    <select id="city-list" name="city"></select>
-    <div id="area-div">
+        <div class="filter-div" id="area-div">
+            <label for="area-list">Zona</label>
+            <select class="area-select" id="area-list" name="area"></select>
+        </div>
 
+        <div class="filter-div" id="param-div">
+            <label for="param-list">Contaminante</label>
+            <select class="filter-select" id="param-list" name="param">
+                <option value="PM25">PM2.5</option>
+                <option value="PM10">PM10</option>
+                <!-- <option value="PM25">CO</option>
+                <option value="PM25">O3</option>
+                <option value="PM25">SO2</option> -->
+            </select>
+        </div>
     </div>
-    <!-- <select id="area-list" name="area"></select> -->
 
     <div id="calendar-container">
         <div id="month-list"></div>
@@ -109,10 +125,10 @@
     <script type="text/javascript" src="scripts/calendar.js"></script>
     <script type="text/javascript" src="scripts/date-calendar.js"></script>
     <script type="text/javascript" src="scripts/month-calendar.js"></script>
-    <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/hour-calendar.js"></script>
     <script type="text/javascript" src="scripts/graphs.js"></script>
-    <script type="text/javascript" src="scripts/area-filter.js"></script>
+    <script type="text/javascript" src="scripts/filters.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
 
 </body>
 
