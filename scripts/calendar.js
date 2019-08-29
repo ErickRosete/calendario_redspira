@@ -48,7 +48,10 @@ const setCalendarTable = async (year, month) => {
                 td = createEmptyDatetd()
             } else {
                 if (data && j < data.length) {
-                    const day = new Date(data[j].interval).getDate()
+                    if (data[j].interval.split(' ').length <= 1) {
+                        data[j].interval = `${data[j].interval} 00:00:00`;
+                    }
+                    const day = new Date(data[j].interval).getDate();
                     if (day == count) {
                         td = createDatetd(data[j])
                         j++;

@@ -3,7 +3,7 @@ const setMonthCalendar = async () => {
     const month_names = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
     const data = await getEveryMonthData();
     data.forEach(monthData => {
-        const date = new Date(monthData.interval);
+        const date = new Date(`${monthData.interval}-01 12:00:00`);
         const month_tile = document.createElement('div')
         month_tile.innerHTML = month_names[date.getMonth()]
         colorElement(month_tile, monthData.val_aqi)
